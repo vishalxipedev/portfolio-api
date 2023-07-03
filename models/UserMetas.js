@@ -3,7 +3,7 @@ const { softDeletePlugin } = require('soft-delete-plugin-mongoose');
 const mongodb = require('mongoose');
 
 const usermetas = new Schema({
-    user_id: { type: String, ref:"user", required:true,},
+    user_id: { type: mongodb.Schema.Types.ObjectId, ref:"user", required:true,},
     social_media_details: [{ type: Array, default: null}],
     about_us: { type: String, default: null },
     experiences: [{ type: Array, default: null }],

@@ -66,12 +66,12 @@ const userInfo = async (req, res) => {
 
 const userDetails = async (req, res) => {
     
-    const user_details = await UserMetas.aggregate([
+    const user_details = await User.aggregate([
         {
             $lookup: {
-                from: "users",
-                localField: "user_id",
-                foreignField: "_id",
+                from: "usermetas",
+                localField: "_id",
+                foreignField: "user_id",
                 as:"user_metas"
             }
             
@@ -100,9 +100,17 @@ const updateUserDetails = async (req, res) => {
         phone: req.body.phone,
         job_title: req.body.job_title,
     }
+
+    let user_metas_data = {
+        about_us: req.body.about_us
+    }
+
     try{
-       let updated_result = await User.findByIdAndUpdate({_id: req.body._id}, {$set: data});
+
+        let updated_result = await User.findByIdAndUpdate({_id: req.body._id}, { $set: data });
+        
         if(updated_result){
+            await UserMetas.findOneAndUpdate({user_id: req.body._id}, { $set: user_metas_data }, '');
             res.send({
                 status: true,
                 message: _trans('user_updated_successfully')
