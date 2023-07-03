@@ -4,13 +4,13 @@ const http = require('http');
 const app = express();
 const cors = require('cors')
 const routes = require('./routes/routing');
-const dbConnect = require('./common/dbConnection');
+const connectDB = require('./common/dbConnection');
 
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/', routes);
-dbConnect();
+connectDB();
 
 const server  = http.createServer(app);
 const hostname = process.env.HOSTNAME || '127.0.0.1'
