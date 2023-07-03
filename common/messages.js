@@ -3,7 +3,7 @@ let message = {
     email_not_valid: "Email is not valid.",
     invalid_account: "These credentials do not match our records.",
     password_length_invalid: "Password length should be min 8.",
-    user_registered_successfully: "Users registered successfully.",
+    user_updated_successfully: "Users updated successfully.",
     something_wrong: "Something went wrong!",
     is_required: 'field is required',
     is_letters: 'field must be contain only letters',

@@ -102,7 +102,17 @@ const updateUserDetails = async (req, res) => {
     }
     try{
        let updated_result = await User.findByIdAndUpdate({_id: req.body._id}, {$set: data});
-       console.log(updated_result);
+        if(updated_result){
+            res.send({
+                status: true,
+                message: _trans('user_updated_successfully')
+            })
+        }else{
+            res.send({
+                status: false,
+                message: _trans('something_wrong')
+            })
+        }
         
     }catch(err) {
         console.log(err);
