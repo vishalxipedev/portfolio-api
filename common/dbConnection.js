@@ -1,0 +1,15 @@
+const mongoose = require('mongoose')
+
+const dbConnection  = () => {
+
+    mongoose.connect(process.env.DB_CONNECTION);
+
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function callback () {
+        console.log(process.env.DB_CONNECTION);
+    });
+
+}
+
+module.exports = dbConnection 
