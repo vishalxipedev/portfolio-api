@@ -127,9 +127,44 @@ const updateUserDetails = async (req, res) => {
     }
 }
 
+const addExperience = async (req, res) => {
+
+    if(errors = checkValidation(req, res)) { return res.status(412).json(errors); }
+
+    let data = {
+        company_name: req.body.company_name,
+        job_title: req.body.job_title,
+        from_year: req.body.from_year,
+        to_year: req.body.to_year,
+        job_description: req.body.job_description
+    }
+
+    try {
+        
+        let updateData = await UserMetas.findOneAndUpdate({ user_id: req.body._id }, { $push: {experiences: data}});
+        
+        if(updateData) {
+            res.send({
+                status: true,
+                message: _trans('add_experience_successfully')
+            })
+        }else{
+            res.send({
+                status: false,
+                message: _trans('something_wrong')
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
 module.exports = {
     loginUser,
     userInfo,
     userDetails,
-    updateUserDetails
+    updateUserDetails,
+    addExperience
 }

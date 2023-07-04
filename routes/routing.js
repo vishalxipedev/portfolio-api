@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router()
 
-const { loginUser, userInfo, userDetails, updateUserDetails } = require('../controllers/UserController');
+const { loginUser, userInfo, userDetails, updateUserDetails, addExperience } = require('../controllers/UserController');
 
 const { sendMessage } = require('../controllers/CommonController');
 
@@ -20,6 +20,14 @@ routes.get('/user-info', authenticate, userInfo);
 routes.get('/user-details', authenticate, userDetails);
 
 routes.post('/update-user-details', authenticate, updateUserDetails);
+
+routes.post('/add-experience',
+onlyTextValidation('company_name'),
+onlyTextValidation('job_title'),
+onlyTextValidation('from_year'),
+onlyTextValidation('job_description'),
+authenticate, 
+addExperience);
 
 // Contact Routes
 
