@@ -2,6 +2,8 @@ const User = require("../models/User");
 const UserMetas = require("../models/UserMetas");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+var mongoose = require('mongoose');
+var objectId = mongoose.Types;
 
 const { _trans } = require('../common/helper');
 const { checkValidation } = require("../common/validation");
@@ -132,6 +134,7 @@ const addExperience = async (req, res) => {
     if(errors = checkValidation(req, res)) { return res.status(412).json(errors); }
 
     let data = {
+        _id: new objectId.ObjectId(),
         company_name: req.body.company_name,
         job_title: req.body.job_title,
         from_year: req.body.from_year,
