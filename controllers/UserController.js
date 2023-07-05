@@ -220,11 +220,39 @@ const updateExperience = async (req, res) => {
 
 }
 
+const deleteExperience = async (req, res) => {
+
+    if(req.body.data_id) {
+        let response = await UserMetas.findOneAndUpdate({ user_id: req.body._id }, { $pull: { experiences: {_id: req.body.data_id} }});
+
+        if(response){
+            res.send({
+                status: true,
+                message: _trans('delete_experience'),
+            })
+        }else{
+            res.send({
+                status: false,
+                message: _trans('something_wrong')
+            })
+        }
+
+    }else{
+        res.send({
+            status: false,
+            message: _trans('missing_parameter')
+        })
+    }
+
+
+}
+
 module.exports = {
     loginUser,
     userInfo,
     userDetails,
     updateUserDetails,
     addExperience,
-    updateExperience
+    updateExperience,
+    deleteExperience
 }

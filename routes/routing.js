@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router()
 
-const { loginUser, userInfo, userDetails, updateUserDetails, addExperience, updateExperience } = require('../controllers/UserController');
+const { loginUser, userInfo, userDetails, updateUserDetails, updateExperience, deleteExperience } = require('../controllers/UserController');
 
 const { sendMessage } = require('../controllers/CommonController');
 
@@ -29,6 +29,10 @@ onlyTextValidation('from_year'),
 onlyTextValidation('job_description'),
 
 authenticate, updateExperience);
+
+routes.post('/delete-experience',
+authenticate, 
+deleteExperience);
 
 // Contact Routes
 
