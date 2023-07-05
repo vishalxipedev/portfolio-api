@@ -15,7 +15,15 @@ const usermetas = new Schema({
             job_description:{ type: String, default: "" }
         }
     ],
-    qualifications: [{ type: Array, default: null }],
+    educations: [
+        {
+            education_type:{ type: String, default: "" }, 
+            from_year:{ type: String, default: "" },
+            to_year:{ type: String, default: "" },
+            college_name:{ type: String, default: "" },
+            education_description:{ type: String, default: "" }
+        }
+    ],
     profile_pic: { type: String, default:null }
 }, { timestamps: {} });
 

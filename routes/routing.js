@@ -8,6 +8,7 @@ const { sendMessage } = require('../controllers/CommonController');
 const { emailValidation, passwordValidation, onlyTextValidation, phoneValidation } = require('../common/validation');
 const { authenticate } = require('../common/helper');
 const { updateExperience, deleteExperience } = require('../controllers/ExperienceController');
+const { addUpdateEducation } = require('../controllers/EducationController');
 
 // User Routes
 
@@ -22,6 +23,8 @@ routes.get('/user-details', authenticate, userDetails);
 
 routes.post('/update-user-details', authenticate, updateUserDetails);
 
+// Experience Routes
+
 routes.post('/add-update-experience',
 
 onlyTextValidation('company_name'),
@@ -34,6 +37,19 @@ authenticate, updateExperience);
 routes.post('/delete-experience',
 authenticate, 
 deleteExperience);
+
+// Education Routes
+
+routes.post('/add-update-education',
+
+onlyTextValidation('education_type'),
+onlyTextValidation('from_year'),
+onlyTextValidation('to_year'),
+onlyTextValidation('college_name'),
+onlyTextValidation('education_description'),
+
+authenticate, 
+addUpdateEducation);
 
 // Contact Routes
 
