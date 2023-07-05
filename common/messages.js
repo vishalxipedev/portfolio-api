@@ -15,6 +15,9 @@ let message = {
     add_experience_successfully: "Experience added successfully.",
     update_experience_successfully: "Experience updated successfully.", 
     delete_experience: "Experience deleted successfully.", 
+    add_education_successfully: "Education added successfully.",
+    update_education_successfully: "Education updated successfully.", 
+    delete_education: "Education deleted successfully.", 
 
 
 };

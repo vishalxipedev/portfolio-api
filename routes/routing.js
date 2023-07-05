@@ -8,7 +8,7 @@ const { sendMessage } = require('../controllers/CommonController');
 const { emailValidation, passwordValidation, onlyTextValidation, phoneValidation } = require('../common/validation');
 const { authenticate } = require('../common/helper');
 const { updateExperience, deleteExperience } = require('../controllers/ExperienceController');
-const { addUpdateEducation } = require('../controllers/EducationController');
+const { addUpdateEducation, deleteEducation } = require('../controllers/EducationController');
 
 // User Routes
 
@@ -50,6 +50,10 @@ onlyTextValidation('education_description'),
 
 authenticate, 
 addUpdateEducation);
+
+routes.post('/delete-education',
+authenticate, 
+deleteEducation);
 
 // Contact Routes
 
