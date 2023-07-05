@@ -12,7 +12,7 @@ const passwordValidation = (input) => {
 }
 
 const onlyTextValidation = (input) => {
-    return body(input).notEmpty().withMessage(_trans('is_required', input));
+    return body(input).notEmpty().isLength({ min: 2 }).withMessage(_trans('is_required', input));
 }
 
 const phoneValidation = (input) => {

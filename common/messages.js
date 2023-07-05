@@ -12,7 +12,8 @@ let message = {
     unauthorized: "Unauthorized request",
     forbidden: "Forbidden",
     user_does_not_exists: "User doesn't exists",
-    add_experience_successfully: "Experience added successfully." 
+    add_experience_successfully: "Experience added successfully.",
+    update_experience_successfully: "Experience updated successfully." 
 
 
 };
